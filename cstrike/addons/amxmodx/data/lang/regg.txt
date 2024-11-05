@@ -4,13 +4,13 @@ REGG_PREFIX = ^1[^4REGG^1]
 REGG_TEAM_CT = Контр-Террористы
 REGG_TEAM_T = Террористы
 
-REGG_INFORMER = Оружие: %s | Уровень: %d/%d | Очков: %d/%d
+REGG_INFORMER = Оружие: <weapon> | Уровень: <level>/<maxlevel> | Очков: <points>/<needpoints>
 
-REGG_LEADER = Лидер: 
+REGG_LEADER = Лидер: <leader> <samelevel> (<lweapon>) 
 REGG_NO_LEADER = нет
 
-REGG_TEAM_LEADER_CT = CT
-REGG_TEAM_LEADER_T = TT
+REGG_TEAM_LEADER_CT = CT (<lweapon>)
+REGG_TEAM_LEADER_T = TT (<lweapon>)
 
 REGG_SHOW_WINNER = Победил игрок ^3%n^1!!!
 REGG_SHOW_WINNER_TEAM = ^1Победила команда^3
@@ -50,13 +50,13 @@ REGG_PREFIX = ^1[^4REGG^1]
 REGG_TEAM_CT = Counter-Terrorists
 REGG_TEAM_T = Terrorists
 
-REGG_INFORMER = Weapon: %s | Level: %d/%d | Points: %d/%d
+REGG_INFORMER = Weapon: <weapon> | Level: <level>/<maxlevel> | Points: <points>/<needpoints>
 
-REGG_LEADER = Leader:
+REGG_LEADER = Leader: <leader> <samelevel> (<lweapon>)
 REGG_NO_LEADER = none
 
-REGG_TEAM_LEADER_CT = CT
-REGG_TEAM_LEADER_T = TT
+REGG_TEAM_LEADER_CT = CT (<lweapon>)
+REGG_TEAM_LEADER_T = TT (<lweapon>)
 
 REGG_SHOW_WINNER = Player ^3%n^1 won!!!
 REGG_SHOW_WINNER_TEAM = ^1Team ^3won

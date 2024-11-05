@@ -21,7 +21,7 @@
 **/
 
 #define REGG_MAJOR_VERSION				0
-#define REGG_MINOR_VERSION				5
+#define REGG_MINOR_VERSION				6
 #define REGG_PATCH_VERSION				41
 
 #define REGG_VERSION					str_to_num(fmt("%d%d%d", REGG_MAJOR_VERSION, REGG_MINOR_VERSION, REGG_PATCH_VERSION))
