@@ -18,9 +18,10 @@ bool:start(const ReGG_Mode:mode) {
 	EnableHookChain(Hooks[HookExplodeHeGrenade]);
 	EnableHookChain(Hooks[HookKilled]);
 
+	Mode = mode;
+
 	EXECUTE_FORWARD_POST_ARGS(FWD_Start, mode);
 
-	Mode = mode;
 	set_member_game(m_bCompleteReset, true);
 	set_member_game(m_bGameStarted, true);
 
@@ -28,7 +29,7 @@ bool:start(const ReGG_Mode:mode) {
 		.tmDelay = 3.0, 
 		.st = WINSTATUS_DRAW, 
 		.event = ROUND_END_DRAW, 
-		.message = "",
+		.message = "Game start!",
 		.sentence = "",
 		.trigger = true
 	);
