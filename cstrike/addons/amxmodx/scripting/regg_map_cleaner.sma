@@ -140,20 +140,20 @@ restoreHostageEntities() {
 removeTargetNameEntities() {
 	new ent;
 	while((ent = rg_find_ent_by_class(ent, "player_weaponstrip"))) {
-		set_entvar(ent, var_targetname, "stripper_dummy");
+		set_entvar(ent, var_classname, "player_weaponstrip2");
 	}
 	while((ent = rg_find_ent_by_class(ent, "game_player_equip"))) {
-		set_entvar(ent, var_targetname,"equipment_dummy");
+		set_entvar(ent, var_classname,"game_player_equip2");
 	}
 }
 
 restoreTargetNameEntities() {
 	new ent;
-	while((ent = rg_find_ent_by_class(ent, "player_weaponstrip"))) {
-		set_entvar(ent, var_targetname, "stripper");
+	while((ent = rg_find_ent_by_class(ent, "player_weaponstrip2"))) {
+		set_entvar(ent, var_classname, "player_weaponstrip");
 	}
-	while((ent = rg_find_ent_by_class(ent, "game_player_equip"))) {
-		set_entvar(ent, var_targetname,"equipment");
+	while((ent = rg_find_ent_by_class(ent, "game_player_equip2"))) {
+		set_entvar(ent, var_classname,"game_player_equip");
 	}
 }
 
