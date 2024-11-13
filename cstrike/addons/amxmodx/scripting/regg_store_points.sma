@@ -21,6 +21,10 @@ public plugin_end() {
 }
 
 public client_disconnected(id) {
+	if(!is_user_connected(id) || is_user_hltv(id) || is_user_bot(id)) {
+		return;
+	}
+
 	new ReGG_Mode:mode = ReGG_Mode:ReGG_GetMode();
 
 	if(mode == ReGG_ModeSingle || mode == ReGG_ModeFFA) {
@@ -40,12 +44,16 @@ public ReGG_StartPost(const ReGG_Mode:mode) {
 	}
 }
 
-public ReGG_PlayerJoinPre(const id) <enabled> {
+public ReGG_PlayerJoinPost(const id) <enabled> {
 	new ReGG_Mode:mode = ReGG_Mode:ReGG_GetMode();
 	new auth[MAX_AUTHID_LENGTH];
 	get_user_authid(id, auth, charsmax(auth));
 	if(!TrieKeyExists(Store, auth)) {
-		return PLUGIN_CONTINUE;
+		return;
+	}
+
+	if(!is_user_connected(id) || is_user_hltv(id) || is_user_bot(id)) {
+		return;
 	}
 
 	if(mode == ReGG_ModeSingle || mode == ReGG_ModeFFA) {
@@ -53,9 +61,9 @@ public ReGG_PlayerJoinPre(const id) <enabled> {
 		ReGG_SetPoints(id, store[StorePoints], ReGG_ChangetType:ReGG_ChangeTypeSet, false);
 		ReGG_SetLevel(id, store[StoreLevel], ReGG_ChangetType:ReGG_ChangeTypeSet, false);
 	}
-	return PLUGIN_HANDLED;
+	return;
 }
 
-public ReGG_PlayerJoinPre(const id) <> {
-	return PLUGIN_CONTINUE;
+public ReGG_PlayerJoinPost(const id) <> {
+	return;
 }
