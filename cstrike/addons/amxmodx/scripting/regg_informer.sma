@@ -159,7 +159,7 @@ public Show_HudLeader(const id) <enabled> {
 		if(informerBitSum & (1 << i)) {
 			switch(i) {
 				case INF_TPL_SAMELEVEL: {
-					if((!playersnum) || (mode == ReGG_ModeTeam))
+					if(!playersnum || playersnum == 1 || mode == ReGG_ModeTeam)
 						tmp[0] = 0;
 					else
 						formatex(tmp, charsmax(tmp), " (+%d)", playersnum);
@@ -236,7 +236,7 @@ public Show_HudInformer(const id) <enabled> {
 					num_to_str(levelMax, tmp, charsmax(tmp));
 					replace(message, charsmax(message), informerTplKeys[i], tmp);
 				}case INF_TPL_SAMELEVEL: {
-					if(!playersnum || mode == ReGG_ModeTeam)
+					if(!playersnum || playersnum == 1 || mode == ReGG_ModeTeam)
 						tmp[0] = 0;
 					else
 						formatex(tmp, charsmax(tmp), " (+%d)", playersnum);
@@ -298,7 +298,7 @@ regg_get_leader_level() {
 		new players[MAX_PLAYERS], num, player, i;
 		new levels[MAX_PLAYERS + 1];
 
-		get_players(players, num, "h");
+		get_players(players, num, "ch");
 
 		for(i = 0; i < num; i++) {
 			player = players[i];
@@ -318,6 +318,7 @@ regg_get_leader_level() {
 regg_get_level_playersnum() {
 	new ReGG_Mode:mode = ReGG_Mode:ReGG_GetMode();
 	new leadersNum = 0;
+	new leadersLevel = 0;
 
 	if(mode == ReGG_ModeTeam) {
 		new lvlCT = ReGG_GetTeamLevel(ReGG_SlotCT);
@@ -331,13 +332,13 @@ regg_get_level_playersnum() {
 	} else {
 		new players[MAX_PLAYERS], num, player, i;
 		new levels[MAX_PLAYERS + 1];
-		new leadersLevel = regg_get_leader_level();
-
-		get_players(players, num, "h");
+		leadersLevel = regg_get_leader_level();
+		get_players(players, num, "ch");
 
 		for(i = 0; i < num; i++) {
 			player = players[i];
-			if(levels[player] == leadersLevel) {
+			levels[player] = ReGG_GetLevel(player);
+			if(levels[player] >= leadersLevel) {
 				leadersNum++;
 			}
 		}
@@ -349,6 +350,7 @@ regg_get_level_playersnum() {
 regg_get_last_leader() {
 	new ReGG_Mode:mode = ReGG_Mode:ReGG_GetMode();
 	new lastLeader = 0;
+	new leadersLevel = 0;
 		
 	if(mode == ReGG_ModeTeam) {
 		new lvlCT = ReGG_GetTeamLevel(ReGG_SlotCT);
@@ -362,13 +364,13 @@ regg_get_last_leader() {
 	} else {
 		new players[MAX_PLAYERS], num, player, i;
 		new levels[MAX_PLAYERS + 1];
-		new leadersLevel = regg_get_leader_level();
-
-		get_players(players, num, "h");
+		leadersLevel = regg_get_leader_level();
+		get_players(players, num, "ch");
 
 		for(i = 0; i < num; i++) {
 			player = players[i];
-			if(levels[player] == leadersLevel) {
+			levels[player] = ReGG_GetLevel(player);
+			if(levels[player] >= leadersLevel) {
 				lastLeader = player;
 			}
 		}
